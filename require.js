@@ -50,8 +50,9 @@ yargs.command({
 yargs.command({
     command:'list',
     describe:'Listing all notes',
+
     handler: () => {
-        console.log('All notes are listed')
+        notesProperties.list();
     }
 })
 

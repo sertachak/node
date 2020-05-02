@@ -24,6 +24,12 @@ const removeNote = (title) => {
     saveNotes(resultArray)
 }
 
+const list = () => {
+    var loadedNotes = loadNotes();
+    loadedNotes.forEach( note => {
+        console.log(note.title + "\n");
+    });
+}
 
 const loadNotes = () => {
     try{
@@ -48,5 +54,6 @@ const getNotes = (parameter1, parameter2) =>{
 
 module.exports =  {
     addNote: addNote,
-    removeNote: removeNote
+    removeNote: removeNote,
+    list:list
 };
