@@ -1,11 +1,18 @@
 //usage of nodemon can be helpful
 
-const express = require('express');
+const path = require('path');
+const express = require('express'); 
 
 const app = express();
 
+app.set('view engine', 'hbs');
+
+app.use(express.static(path.join(__dirname, '../public')));
+
 app.get('', (req, res) => {
-    res.send('Hello from web server');
+    res.render('index', {
+        title:'asd'
+    })
 })
 
 app.get('/help', (req, res) => {
