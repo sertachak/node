@@ -22,8 +22,23 @@ app.get('', (req, res) => {
     })
 })
 
-app.get('/help', (req, res) => {
-    res.send('Help page');
+app.get('/history', (req, res) => {
+    res.render('history', {
+        title:'History of town'
+    })
+})
+
+app.get('/products', (req, res) => {
+    if(!req.query.search){
+        return res.send({
+            error:'You must provide search'
+        })
+    }
+
+    console.log(req.query.search)
+    res.send({
+        products:[]
+    })
 })
 
 app.get('/about', (req,res) => {
@@ -31,9 +46,24 @@ app.get('/about', (req,res) => {
 })
 
 app.get('/weather', (req,res) => {
-    res.send('Weather page will be moved under this route');
+    if(!req.query.search){
+        return res.send({
+            error:'Search option not provided for weather forcasting'
+        })
+    }
+
+    res.send({
+        address: req.query.search
+    })
 })
 
-app.listen('3000', () =>{
+app.get('*',(req,res) => {
+    res.render('404', {
+        title:'404 cannot find directed page'
+    })
+})
+
+
+app.listen('8080', () =>{
     console.log('Server is up and running');
 }) 
